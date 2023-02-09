@@ -43,6 +43,13 @@
         <toolWindow factoryClass="com.example.extension.TranslatorToolsWindow" id="Translator" anchor="right"/>
     </extensions>
 
+    <projectListeners>
+        <listener class="com.example.listener.TranslatorSettingListener"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <listener class="com.example.listener.InitTranslatorWindowListener"
+                  topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener"/>
+    </projectListeners>
+
     <actions>
         <action class="com.example.action.HelloWorldAction" description="Hello world">
             <!-- 该标签表示通过快捷键触发Action，注意快捷键可能会冲突，导致功能无法被触发，更换绑定的快捷键即可 -->
