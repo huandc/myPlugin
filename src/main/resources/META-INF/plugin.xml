@@ -1,0 +1,55 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.example.demo</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>ThisIsMyPlugin</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="chong.huan@1.com" url="https://www.yourcompany.com">CH</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    //插件描述
+    <description><![CDATA[
+    <h1>Translator<h1><br>
+    <p>这是一个翻译插件，翻译插件基于百度翻译API，提供了在IDE中翻译的能力<p><br>
+    ]]></description>
+
+    // 插件版本更新日志
+    <change-notes><![CDATA[
+      1.0.0<br>
+      1. 搭建项目框架
+    ]]>
+    </change-notes>
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        //在这里实现拓展点
+        <applicationConfigurable parentId="tools"
+                                 instance="com.example.extension.TranslatorSettingConfiguration"
+                                 id="com.example.extension.TranslatorSettingConfiguration"
+                                 displayName="Translator"
+        />
+    </extensions>
+
+    <actions>
+        <action class="com.example.action.HelloWorldAction" description="Hello world">
+            <!-- 该标签表示通过快捷键触发Action，注意快捷键可能会冲突，导致功能无法被触发，更换绑定的快捷键即可 -->
+            <keyboard-shortcut first-keystroke="control shift 9" keymap="$default"/>
+        </action>
+        <action class="com.example.action.TranslatorAction" description="Translate" text="Translate">
+            <!-- 绑定快捷键，此处也可以选择不绑定。 -->
+            <keyboard-shortcut first-keystroke="control shift 9" keymap="$default"/>
+            <!-- 添加到鼠标右键菜单中 -->
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+    </actions>
+</idea-plugin>
