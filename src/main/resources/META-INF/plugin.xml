@@ -40,6 +40,7 @@
         />
         <applicationService serviceImplementation="com.example.extension.TranslatorSetting"/>
         <projectService serviceImplementation="com.example.extension.TranslatorCache"/>
+        <toolWindow factoryClass="com.example.extension.TranslatorToolsWindow" id="Translator" anchor="right"/>
     </extensions>
 
     <actions>

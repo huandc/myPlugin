@@ -1,6 +1,7 @@
 package com.example.action;
 
 import com.example.extension.TranslatorCache;
+import com.example.extension.TranslatorToolsWindow;
 import com.example.util.TranslatorUtils;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
@@ -34,7 +35,11 @@ public class TranslatorAction extends AnAction {
         } else {
             transResult = TranslatorUtils.getTransResult(text, "auto", "zh");
             transCache.put(text, transResult);
-        }        Notifications.Bus.notify(new Notification("Translate", "This is translator", transResult, NotificationType.INFORMATION), e.getProject());
+        }
+        Notifications.Bus.notify(new Notification("Translate", "This is translator", transResult, NotificationType.INFORMATION), e.getProject());
 
+
+        //显示在工具栏窗口
+        TranslatorToolsWindow.addNote(text, transResult);
     }
 }
