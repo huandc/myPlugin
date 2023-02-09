@@ -38,6 +38,8 @@
                                  id="com.example.extension.TranslatorSettingConfiguration"
                                  displayName="Translator"
         />
+        <applicationService serviceImplementation="com.example.extension.TranslatorSetting"/>
+        <projectService serviceImplementation="com.example.extension.TranslatorCache"/>
     </extensions>
 
     <actions>

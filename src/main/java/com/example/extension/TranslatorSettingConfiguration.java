@@ -26,15 +26,28 @@ public class TranslatorSettingConfiguration implements Configurable {
         this.appID = new JTextField();
         this.securityKey = new JTextField();
 
-        //设置输入框提示语
-        this.appID.setText(appIDHint);
-        this.appID.setForeground(JBColor.GRAY);
         this.appID.addFocusListener(new TextFieldListener(this.appID, appIDHint));
-        this.securityKey.setText(securityKeyHint);
-        this.securityKey.setForeground(JBColor.GRAY);
+        // 打开配置界面时，判断持久化对象字段非 null，回填配置信息到输入框中。
+        if (TranslatorSetting.getInstance().appID != null) {
+            this.appID.setText(TranslatorSetting.getInstance().appID);
+        } else {
+            // 持久化对象字段为 null，设置输入框提示语
+            this.appID.setText(appIDHint);
+            this.appID.setForeground(JBColor.GRAY);
+        }
+
         this.securityKey.addFocusListener(new TextFieldListener(this.securityKey, securityKeyHint));
+        // 打开配置界面时，判断持久化对象字段非 null，回填配置信息到输入框中。
+        if (TranslatorSetting.getInstance().securityKey != null) {
+            this.securityKey.setText(TranslatorSetting.getInstance().securityKey);
+        } else {
+            // 持久化对象字段为 null，设置输入框提示语
+            this.securityKey.setText(securityKeyHint);
+            this.securityKey.setForeground(JBColor.GRAY);
+        }
         this.component.add(this.appID);
         this.component.add(this.securityKey);
+
     }
 
     @Override
@@ -55,8 +68,8 @@ public class TranslatorSettingConfiguration implements Configurable {
     // 点击配置页面中的 apply 按钮或者 OK 按钮，会调用该方法，在该方法中保存配置
     @Override
     public void apply() throws ConfigurationException {
-        TranslatorUtils.appid = appID.getText();
-        TranslatorUtils.securityKey = securityKey.getText();
+        TranslatorSetting.getInstance().appID = appID.getText();
+        TranslatorSetting.getInstance().securityKey = securityKey.getText();
     }
 
 

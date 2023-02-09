@@ -1,6 +1,7 @@
 package com.example.util;
 
 import com.alibaba.fastjson.JSON;
+import com.example.extension.TranslatorSetting;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashMap;
@@ -10,8 +11,9 @@ import java.util.Map;
 public class TranslatorUtils {
 
     private final static String transAPIHost = "http://api.fanyi.baidu.com/api/trans/vip/translate";
-    public static String appid;
-    public static String securityKey;
+    // 翻译 API 的配置修改为来自持久化对象的值
+    public static String appid = TranslatorSetting.getInstance().appID;
+    public static String securityKey = TranslatorSetting.getInstance().securityKey;
 
     public static String getTransResult(String query, String from, String to) {
         Map<String, String> params = buildParams(query, from, to);
